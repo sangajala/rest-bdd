@@ -1,0 +1,49 @@
+Feature: City movies advanced
+
+  @cm3
+  Scenario: Get locations
+
+    Given the apis are up and running for "http://cmapi.bananaappscenter.com/"
+    When a user performs a get request to "api/Location/LocationDetails"
+    And and perform the request
+    Then the response code should be 200
+    And I should see json response with pairs on the filtered "Msg" node
+      | Message    | Success Location Details |
+      | StatusCode | 200                      |
+      | isError    | false                    |
+      | isSuccess  | true                     |
+
+  Scenario: Check the movie details
+
+    Given the apis are up and running for "http://cmapi.bananaappscenter.com/"
+    When a user performs a post request to "api/MovieBooking/MovieBooking" with below details
+      | Mov_ID      | 3 |
+      | Location_ID | 5 |
+    And and perform the post request
+    Then the response code should be 200
+    And I should see json response with pairs on the filtered "Msg" node
+      | Message    | Success Moviebooking Details |
+      | StatusCode | 200                          |
+      | isError    | false                        |
+      | isSuccess  | true                         |
+
+
+##  http://api.internationalshowtimes.com/v4/showtimes?city_ids=15690&movie_id=20975
+#
+#
+#  Scenario: Get the show timings the movie details
+#
+#    Given the apis are up and running for "http://api.internationalshowtimes.com/v4/showtimes?city_ids=15690&movie_id=20975"
+##    When a user performs a get request to "v4/showtimes"
+##    When I add the following filters
+##      | apikey   | qBv6dUFYLuM39o8srYvItp8nC7eLnxTL |
+##      | city_id  | 15690                            |
+##      | movie_id | 20975                            |
+#    And and perform the request
+#    Then the response code should be 200
+#    And I print the response
+##    And I should see json response with pairs on the filtered "Msg" node
+##      | Message    | Success Moviebooking Details |
+##      | StatusCode | 200                          |
+##      | isError    | false                        |
+##      | isSuccess  | true                         |
